@@ -3,7 +3,7 @@
     <gradient
         android:type="radial"
         android:endColor="@color/color_allsms_background"
-        android:startColor="@color/color_allsms_green_bg"
+        android:startColor="@color/color_allsms_action_bar"
         android:gradientRadius="50"
         />
 </shape>

@@ -9,7 +9,7 @@
 
     <style name="MyTheme.ActionBarStyle" parent="@android:style/Widget.Holo.Light.ActionBar">
         <item name="android:titleTextStyle">@style/MyTitleTextStyle</item>
-        <item name="android:background">@color/color_allsms_background</item>
+        <item name="android:background">@drawable/action_bar_backgraund</item>
     </style>
 
     <style name="MyTitleTextStyle">
@@ -17,14 +17,14 @@
     </style>
 
     <style name="drawer_list_style">
-        <item name="android:divider">@drawable/drawer_divider</item>
+        <item name="android:divider">@color/color_allsms_divider</item>
         <item name="android:background">@color/color_allsms_background</item>
         <item name="android:dividerHeight">1dp</item>
     </style>
 
     <style name="drawer_item_style">
         <item name="android:textColor">@color/color_allsms_title_text</item>
-        <item name="android:background">@color/color_allsms_background</item>
+        <item name="android:background">@drawable/activated_drawer_item</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:paddingLeft">16dp</item>
         <item name="android:paddingRight">16dp</item>

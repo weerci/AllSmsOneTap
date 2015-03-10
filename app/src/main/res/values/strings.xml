@@ -1,5 +1,31 @@
 <resources>
     <string name="app_name">All SMS by one tap</string>
+
+    <!--Редактирование категории-->
+    <string name="header_category_editor">Edit of categroy</string>
+    <string name="category_name_label">Name category</string>
+    <string name="category_name_hint">Type a name of category.</string>
+    <string name="category_sms_selected">Selected</string>
+    <string name="category_sms_available">Available</string>
+    <string name="category_add_sms">Add selected sms-template to category?</string>
+    <string name="category_remove_sms">Remove selected sms-template from category?</string>
+    <string name="category_add_title">Add template</string>
+    <string name="category_remove_title">Remove template</string>
+    <string name="category_null">--Without category--</string>
+
+    <!--Отправка сообщений-->
+    <string name="sms_sender_title">Send message?</string>
+    <string name="sms_sender_text">This text \'%1$s\', will be send to the number \'%2$s\'.</string>
+
+    <!-- actions-->
+    <string name="action_all">All SMS</string>
+    <string name="action_search">Search</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_about">About</string>
+    <string name="action_favorite">Favorite</string>
+    <string name="action_other">Other</string>
+    <string name="action_add_sms">Create new SMS</string>
+
     <string-array name="screen_array">
         <item>All Sms</item>
         <item>Category</item>
@@ -7,6 +33,6 @@
     </string-array>
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
-    <string name="action_add_sms">Create new SMS</string>
+    <string name="phone_prefix">tel. </string>
 
 </resources>
