@@ -1,8 +1,36 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="@android:style/Theme.Holo.Light.DarkActionBar">
+    <style name="AppTheme" parent="@android:style/Theme.Holo.Light">
+        <item name="android:activatedBackgroundIndicator">@drawable/activated_background</item>
+        <item name="android:actionBarStyle">@style/MyTheme.ActionBarStyle</item>
+        <item name="android:actionBarItemBackground">@drawable/activated_background</item>
 
+    </style>
+
+    <style name="MyTheme.ActionBarStyle" parent="@android:style/Widget.Holo.Light.ActionBar">
+        <item name="android:titleTextStyle">@style/MyTitleTextStyle</item>
+        <item name="android:background">@color/color_allsms_background</item>
+    </style>
+
+    <style name="MyTitleTextStyle">
+        <item name="android:textColor">@color/color_allsms_title_text</item>
+    </style>
+
+    <style name="drawer_list_style">
+        <item name="android:divider">@color/color_allsms_divider</item>
+        <item name="android:textColor">@color/color_allsms_title_text</item>
+        <item name="android:background">@color/color_allsms_background</item>
+        <item name="android:dividerHeight">2dp</item>
+    </style>
+
+    <style name="drawer_item_style">
+        <item name="android:textColor">@color/color_allsms_title_text</item>
+        <item name="android:background">@color/color_allsms_background</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceListItemSmall</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingRight">16dp</item>
     </style>
 
 </resources>

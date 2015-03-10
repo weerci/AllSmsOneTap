@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="color_allsms_plane" type="color">#ff7bc82b</item>
+    <item name="color_allsms_green_bg" type="color">#ffe1f0e1</item>
+    <item name="color_allsms_title_text" type="color">#ff1a8024</item>
+    <item name="color_allsms_background" type="color">#ffe7e7e7</item>
+    <item name="color_allsms_divider" type="color">#ffa5a5a5</item>
+</resources>
