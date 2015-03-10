@@ -2,6 +2,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/action_add_sms"
         android:icon="@drawable/ic_menu_add"
-        android:title="@string/action_websearch"
+        android:title="@string/action_add_sms"
         android:showAsAction="ifRoom" />
 </menu>
