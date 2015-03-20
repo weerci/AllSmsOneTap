@@ -18,6 +18,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 
 import com.production.kriate.allsmsonetap.fragments.PageSmsFragment;
 
@@ -28,6 +29,7 @@ public class MainActivity extends FragmentActivity {
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
+    private RelativeLayout mRelativeLayout;
 
     private CharSequence mDrawerTitle;
     private CharSequence mTitle;
@@ -42,6 +44,7 @@ public class MainActivity extends FragmentActivity {
         mScreenTitles = getResources().getStringArray(R.array.screen_array);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
+        mRelativeLayout = (RelativeLayout) findViewById(R.id.relative_layout);
 
         // set up the drawer's list view with items and click listener
         mDrawerList.setAdapter(new ArrayAdapter<String>(this,
@@ -82,7 +85,7 @@ public class MainActivity extends FragmentActivity {
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         // If the nav drawer is open, hide action items related to the content view
-        boolean drawerOpen = mDrawerLayout.isDrawerOpen(mDrawerList);
+        boolean drawerOpen = mDrawerLayout.isDrawerOpen(mRelativeLayout);
         menu.findItem(R.id.action_add_sms).setVisible(!drawerOpen);
         return super.onPrepareOptionsMenu(menu);
     }
@@ -136,16 +139,7 @@ public class MainActivity extends FragmentActivity {
             } else{
                 setTitle(mScreenTitles[position]);
             }
-            mDrawerLayout.closeDrawer(mDrawerList);
-        }
-
-        // update selected item and title, then close the drawer
-        mDrawerList.setItemChecked(position, true);
-        mDrawerLayout.closeDrawer(mDrawerList);
-        if (position == 0) {
-            setTitle(getResources().getString(R.string.app_name));
-        } else{
-            setTitle(mScreenTitles[position]);
+            mDrawerLayout.closeDrawer(mRelativeLayout);
         }
 
     }
