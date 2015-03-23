@@ -4,6 +4,7 @@
     <item name="color_allsms_bg" type="color">#ffe1f0e1</item>
     <item name="color_allsms_title_text" type="color">#ff1a8024</item>
     <item name="color_allsms_background" type="color">#ffe7e7e7</item>
-    <item name="color_allsms_divider" type="color">#ffa5a5a5</item>
+    <item name="color_allsms_divider" type="color">#ffcacaca</item>
     <item name="color_allsms_action_bar" type="color">#ffbdbdbd</item>
+    <item name="color_tab_text" type="color">#fffd8701</item>
 </resources>
