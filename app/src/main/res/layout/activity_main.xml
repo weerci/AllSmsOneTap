@@ -34,9 +34,7 @@
                 android:id="@+id/text_view_exit"
                 android:clickable="true"
                 style="@style/drawer_item_style"
-                android:text="Выход"
-                />
-
+                android:minHeight="?android:attr/listPreferredItemHeightSmall"/>
         </LinearLayout>
     </RelativeLayout>
 </android.support.v4.widget.DrawerLayout>

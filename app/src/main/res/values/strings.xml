@@ -29,6 +29,7 @@
     <string-array name="screen_array">
         <item>All Sms</item>
         <item>Category</item>
+        <item>Settings</item>
         <item>About</item>
     </string-array>
     <string name="drawer_open">Open navigation drawer</string>
