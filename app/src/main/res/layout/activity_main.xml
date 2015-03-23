@@ -28,13 +28,24 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_alignParentBottom="true" >
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:visibility="visible"
+                android:background="@android:color/darker_gray"/>
             <TextView
+                android:id="@+id/text_view_exit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/text_view_exit"
                 android:clickable="true"
+                android:text="@string/action_close"
                 style="@style/drawer_item_style"
                 android:minHeight="?android:attr/listPreferredItemHeightSmall"/>
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:visibility="visible"
+                android:background="@android:color/darker_gray"/>
         </LinearLayout>
     </RelativeLayout>
 </android.support.v4.widget.DrawerLayout>

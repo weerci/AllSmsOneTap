@@ -25,6 +25,7 @@
     <string name="action_favorite">Favorite</string>
     <string name="action_other">Other</string>
     <string name="action_add_sms">Create new SMS</string>
+    <string name="action_close">Close</string>
 
     <string-array name="screen_array">
         <item>All Sms</item>

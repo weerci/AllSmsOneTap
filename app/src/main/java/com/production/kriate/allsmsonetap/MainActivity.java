@@ -16,9 +16,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.production.kriate.allsmsonetap.fragments.PageSmsFragment;
 
@@ -30,6 +32,7 @@ public class MainActivity extends FragmentActivity {
     private ListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
     private RelativeLayout mRelativeLayout;
+    private TextView mTextViewClose;
 
     private CharSequence mDrawerTitle;
     private CharSequence mTitle;
@@ -45,6 +48,14 @@ public class MainActivity extends FragmentActivity {
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
         mRelativeLayout = (RelativeLayout) findViewById(R.id.relative_layout);
+
+        mTextViewClose = (TextView) findViewById(R.id.text_view_exit);
+        mTextViewClose.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         // set up the drawer's list view with items and click listener
         mDrawerList.setAdapter(new ArrayAdapter<String>(this,
