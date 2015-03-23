@@ -1,5 +1,6 @@
 package com.production.kriate.allsmsonetap.fragments;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -64,6 +65,9 @@ public class PageSmsFragment extends Fragment {
         mViewPager.setCurrentItem(currentPage, true);
 
         SlidingTabLayout slidingTabLayout = (SlidingTabLayout) view.findViewById(R.id.sliding_tabs);
+        slidingTabLayout.setCustomTabView(R.layout.custom_tab, R.id.custom_tab_text_id);
+//        slidingTabLayout.setDistributeEvenly(true);
+        slidingTabLayout.setSelectedIndicatorColors(Color.argb(255,123,200, 43));
         slidingTabLayout.setViewPager(mViewPager);
     }
 
