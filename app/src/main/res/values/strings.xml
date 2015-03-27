@@ -1,6 +1,33 @@
 <resources>
     <string name="app_name">All SMS by one tap</string>
 
+    <string name="sms_send_success">SMS Sent!</string>
+    <string name="sms_send_failed">SMS failed, please try again later!</string>
+    <string name="sms_add_template">New template</string>
+    <string name="sms_delete_template">Delete</string>
+    <string name="sms_edit_template">Edit</string>
+    <string name="image_content_plane">Sms how plane</string>
+    <string name="sms_exit">Exit</string>
+
+    <!-- Редактирование шаблона -->
+    <string name="header_template_editor">Edit of template</string>
+    <string name="title_template_label">Title template</string>
+    <string name="template_title_hint">Type a title for the template.</string>
+    <string name="text_category_label">Category of template</string>
+    <string name="text_template_label">Text template</string>
+    <string name="text_template_hint">Type a text for the template.</string>
+    <string name="phone_template_label">Phone recipient</string>
+    <string name="phone_template_hint">Enter the phone</string>
+    <string name="favorite_template_label">Is favorite</string>
+    <string name="select_phone_label">Select</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="empty_categroy">Category not present</string>
+
+    <!--Настройки-->
+    <string name="setting_purchase_text">If you want to create more than two categories, you can buy them on google pay. To begin purchase?</string>
+    <string name="header_purchase_editor">Purchase of categories</string>
+
     <!--Редактирование категории-->
     <string name="header_category_editor">Edit of categroy</string>
     <string name="category_name_label">Name category</string>

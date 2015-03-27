@@ -1,5 +1,6 @@
 package com.production.kriate.allsmsonetap.fragments;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -7,6 +8,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -15,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.production.kriate.allsmsonetap.EditSmsActivity;
 import com.production.kriate.allsmsonetap.R;
 import com.production.kriate.allsmsonetap.db.DbCategory;
 import com.production.kriate.allsmsonetap.db.DbConnector;
@@ -70,6 +73,18 @@ public class PageSmsFragment extends Fragment {
         slidingTabLayout.setSelectedIndicatorColors(Color.argb(255,123,200, 43));
         slidingTabLayout.setViewPager(mViewPager);
     }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()) {
+            case R.id.menu_item_new_template:
+                Intent i = new Intent(getActivity(), EditSmsActivity.class);
+                startActivityForResult(i, PageSmsFragment.SMS_INSERT);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
 
     // region + Adapters
     private class SmsPagerAdapter extends PagerAdapter {
