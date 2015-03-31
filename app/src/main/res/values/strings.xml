@@ -11,12 +11,12 @@
 
     <!-- Редактирование шаблона -->
     <string name="header_template_editor">Edit of template</string>
-    <string name="title_template_label">Title template</string>
-    <string name="template_title_hint">Type a title for the template.</string>
-    <string name="text_category_label">Category of template</string>
-    <string name="text_template_label">Text template</string>
-    <string name="text_template_hint">Type a text for the template.</string>
-    <string name="phone_template_label">Phone recipient</string>
+    <string name="title_template_label">Title</string>
+    <string name="template_title_hint">Type a title</string>
+    <string name="text_category_label">Category</string>
+    <string name="text_template_label">Text</string>
+    <string name="text_template_hint">Type a text</string>
+    <string name="phone_template_label">Phone</string>
     <string name="phone_template_hint">Enter the phone</string>
     <string name="favorite_template_label">Is favorite</string>
     <string name="select_phone_label">Select</string>
