@@ -42,7 +42,7 @@
                 style="@style/drawer_item_style"
                 android:minHeight="?android:attr/listPreferredItemHeightSmall"/>
             <View
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:visibility="visible"
                 android:background="@android:color/darker_gray"/>
