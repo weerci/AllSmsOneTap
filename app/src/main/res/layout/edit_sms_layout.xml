@@ -38,6 +38,7 @@
                     android:layout_width="70dp"
                     android:layout_height="wrap_content"
                     android:paddingLeft="4dp"
+                    android:textColor="@color/color_allsms_title_text"
                     android:text="@string/title_template_label"
                     />
                 <EditText
@@ -57,6 +58,7 @@
                     android:layout_width="70dp"
                     android:layout_height="wrap_content"
                     android:paddingLeft="4dp"
+                    android:textColor="@color/color_allsms_title_text"
                     android:text="@string/text_template_label"
                     />
                 <EditText
@@ -65,6 +67,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textCapSentences"
+                    android:textColor="@color/color_allsms_title_text"
                     android:hint="@string/text_template_hint"/>
             </LinearLayout>
             <LinearLayout
@@ -75,6 +78,7 @@
                         android:layout_width="70dp"
                         android:layout_height="wrap_content"
                         android:paddingLeft="4dp"
+                        android:textColor="@color/color_allsms_title_text"
                         android:text="@string/phone_template_label"
                         />
                     <EditText
@@ -91,6 +95,7 @@
                 <TextView
                     android:layout_width="70dp"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/color_allsms_title_text"
                     android:paddingLeft="4dp"
                     android:text="@string/text_category_label"
                     />
@@ -113,6 +118,7 @@
                     android:layout_width="70dp"
                     android:layout_height="wrap_content"
                     android:paddingLeft="4dp"
+                    android:textColor="@color/color_allsms_title_text"
                     android:text="@string/favorite_template_label"
                     />
 

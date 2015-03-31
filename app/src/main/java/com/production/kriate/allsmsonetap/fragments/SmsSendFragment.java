@@ -16,26 +16,29 @@ import com.production.kriate.allsmsonetap.R;
 
 
 public class SmsSendFragment extends DialogFragment{
+    public static final String EXTRA_SMS = "com.production.kriate.allsmsonetap.SmsSendFragment.EXTRA_SMS";
     private DbSms mDbSms;
 
+    public SmsSendFragment(){}
     public static SmsSendFragment newInstance(DbSms dbSms){
-        SmsSendFragment smsSendFragment = new SmsSendFragment();
-        smsSendFragment.setDbSms(dbSms);
-        return  smsSendFragment;
-    }
-    void setDbSms(DbSms dbSms) {
-        mDbSms = dbSms;
+        Bundle args = new Bundle();
+        args.putSerializable(EXTRA_SMS, dbSms);
+        SmsSendFragment fragment = new SmsSendFragment();
+        fragment.setArguments(args);
+        return fragment;
     }
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        @SuppressLint("InflateParams") View v = getActivity().getLayoutInflater().inflate(R.layout.dialog_send_sms_layout, null);
+        View v = getActivity().getLayoutInflater().inflate(R.layout.dialog_send_sms_layout, null);
+
+        mDbSms = (DbSms)getArguments().getSerializable(EXTRA_SMS);
 
         TextView textView = (TextView) v.findViewById(R.id.dialog_send_sms_text);
         String s = String.format(getResources().getString(R.string.sms_sender_text), mDbSms.getTextSms(), mDbSms.getPhoneNumber());
         textView.setText(s);
 
-        return new AlertDialog.Builder(getActivity()/*, R.style.AlertDialogCustom*/)
+        return new AlertDialog.Builder(getActivity()/*, R.style.CustomDialogTheme*/)
                 .setView(v)
                 .setTitle(R.string.sms_sender_title)
                 .setPositiveButton(android.R.string.ok,
@@ -54,8 +57,8 @@ public class SmsSendFragment extends DialogFragment{
             return;
         }
 
-/*        Intent i = new Intent();
+        Intent i = new Intent();
         i.putExtra(EditSmsFragment.EXTRA_SMS, mDbSms);
-        getTargetFragment().onActivityResult(getTargetRequestCode(), Activity.RESULT_OK, i);*/
+        getTargetFragment().onActivityResult(getTargetRequestCode(), Activity.RESULT_OK, i);
     }
 }
