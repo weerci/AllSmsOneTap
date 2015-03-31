@@ -27,6 +27,7 @@ import com.production.kriate.allsmsonetap.db.DbSms;
 import com.production.kriate.allsmsonetap.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class EditSmsFragment extends Fragment{
@@ -69,6 +70,7 @@ public class EditSmsFragment extends Fragment{
         mPhoneField = (EditText) v.findViewById(R.id.phone_number_edit_text);
         mCategroySpinner = (Spinner)v.findViewById(R.id.sms_category_spinner);
         mId = DbSms.EMPTY_ID;
+
 
         CategroyAdapter adapter = new CategroyAdapter(getActivity(), DbConnector.newInstance(getActivity()).getCategory().selectWithEmpty());
         adapter.setDropDownViewResource(R.layout.spinner_list_item);

@@ -1,5 +1,6 @@
 package com.production.kriate.allsmsonetap.fragments;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.production.kriate.allsmsonetap.EditSmsActivity;
+import com.production.kriate.allsmsonetap.MainActivity;
 import com.production.kriate.allsmsonetap.R;
 import com.production.kriate.allsmsonetap.db.DbCategory;
 import com.production.kriate.allsmsonetap.db.DbConnector;
@@ -84,7 +86,28 @@ public class PageSmsFragment extends Fragment {
                 return super.onOptionsItemSelected(item);
         }
     }
-
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == Activity.RESULT_OK) {
+            DbSms dbSms = (DbSms) data.getExtras().getSerializable(EditSmsFragment.EXTRA_SMS);
+            int indexPage = mViewPager.getCurrentItem();
+            switch (requestCode) {
+                case SMS_INSERT:
+                    DbConnector.newInstance(getActivity()).getSms().insert(dbSms);
+                    ((MainActivity)getActivity()).selectItem(0, indexPage);
+                    break;
+                case SMS_UPDATE:
+                    DbConnector.newInstance(getActivity()).getSms().update(dbSms);
+                    ((MainActivity)getActivity()).selectItem(0, indexPage);
+                    break;
+                case REQUEST_SEND_SMS:
+                    //SmsSend.Send(getActivity(), dbSms);
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
 
     // region + Adapters
     private class SmsPagerAdapter extends PagerAdapter {

@@ -130,7 +130,7 @@ public class MainActivity extends FragmentActivity {
         }
     }
 
-    private void selectItem(int position, int indexPage) {
+    public void selectItem(int position, int indexPage) {
         Fragment fragment = null;
         switch (position) {
             case 0:

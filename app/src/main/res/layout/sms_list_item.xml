@@ -3,23 +3,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/activate_background_list"
     android:descendantFocusability="blocksDescendants"
     android:orientation="horizontal">
-
     <LinearLayout
         android:orientation="horizontal"
-        android:layout_width="8dp"
-        android:layout_height="match_parent">
+        android:layout_width="4dp"
+        android:background="@color/color_tab_text"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="2dp"
+        android:layout_height="32dp">
     </LinearLayout>
     <ImageView
         android:id="@+id/sms_list_img_favorite"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingLeft="8dp"
         android:orientation="vertical">
         <TextView
             android:id="@+id/sms_list_item_title_text_view"
@@ -29,16 +32,13 @@
             android:paddingLeft="4dp"
             android:paddingRight="4dp"
             tools:text="Sms title"/>
-
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:id="@+id/sms_list_item_text_text_view"
+            style="@style/sms_list_item"
             tools:text="Sms text, very, very big. And only big"/>
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:id="@+id/sms_list_item_phone_text_view"
+            style="@style/sms_list_item.text_list_phone"
             tools:text="8-903-933-09-34"
             />
     </LinearLayout>
