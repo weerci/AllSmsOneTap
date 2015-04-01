@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -101,7 +102,7 @@ public class PageSmsFragment extends Fragment {
                     ((MainActivity)getActivity()).selectItem(0, indexPage);
                     break;
                 case REQUEST_SEND_SMS:
-                    //SmsSend.Send(getActivity(), dbSms);
+                    SmsSend.Send(getActivity(), dbSms);
                     break;
                 default:
                     break;
@@ -135,13 +136,12 @@ public class PageSmsFragment extends Fragment {
                     FragmentManager fm = getActivity().getSupportFragmentManager();
                     SmsListAdapter adapter = (SmsListAdapter)listView.getAdapter();
                     DbSms dbSms = adapter.arrayDbSms.get(position);
-/*
+
                     SmsSendFragment dialog = SmsSendFragment.newInstance(dbSms);
                     dialog.setTargetFragment(PageSmsFragment.this, REQUEST_SEND_SMS);
                     dialog.show(fm, DIALOG_SEND_SMS);
-*/
-                    SmsSendFragment1 cdd = new SmsSendFragment1(getActivity());
-                    cdd.show();
+//                    SmsSendFragment cdd = new SmsSendFragment1(getActivity());
+//                    cdd.show();
                 }
             });
             ArrayList<DbSms> smsList;

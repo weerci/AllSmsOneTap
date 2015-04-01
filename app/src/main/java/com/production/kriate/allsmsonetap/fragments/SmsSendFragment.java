@@ -1,24 +1,26 @@
 package com.production.kriate.allsmsonetap.fragments;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Dialog;
-import android.support.v4.app.DialogFragment;
-import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v4.app.DialogFragment;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.widget.Button;
 import android.widget.TextView;
 
-import com.production.kriate.allsmsonetap.db.DbSms;
 import com.production.kriate.allsmsonetap.R;
+import com.production.kriate.allsmsonetap.db.DbSms;
 
-
-public class SmsSendFragment extends DialogFragment{
+/**
+ * Created by dima on 01.04.2015.
+ */
+public class SmsSendFragment extends DialogFragment implements View.OnClickListener {
     public static final String EXTRA_SMS = "com.production.kriate.allsmsonetap.SmsSendFragment.EXTRA_SMS";
+    public Button mButtonYes, mButtonNo;
     private DbSms mDbSms;
 
-    public SmsSendFragment(){}
     public static SmsSendFragment newInstance(DbSms dbSms){
         Bundle args = new Bundle();
         args.putSerializable(EXTRA_SMS, dbSms);
@@ -29,26 +31,38 @@ public class SmsSendFragment extends DialogFragment{
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        View v = getActivity().getLayoutInflater().inflate(R.layout.dialog_send_sms_layout, null);
+        Dialog dialog =  super.onCreateDialog(savedInstanceState);
+
+        dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.custom_dialog);
 
         mDbSms = (DbSms)getArguments().getSerializable(EXTRA_SMS);
-
-        TextView textView = (TextView) v.findViewById(R.id.dialog_send_sms_text);
+        TextView textView = (TextView) dialog.findViewById(R.id.dialog_send_sms_text);
         String s = String.format(getResources().getString(R.string.sms_sender_text), mDbSms.getTextSms(), mDbSms.getPhoneNumber());
         textView.setText(s);
 
-        return new AlertDialog.Builder(getActivity()/*, R.style.CustomDialogTheme*/)
-                .setView(v)
-                .setTitle(R.string.sms_sender_title)
-                .setPositiveButton(android.R.string.ok,
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                sendResult();
-                            }
-                        }
-                )
-                .setNegativeButton(android.R.string.no, null)
-                .create();
+        mButtonYes = (Button) dialog.findViewById(R.id.btn_yes);
+        mButtonNo = (Button) dialog.findViewById(R.id.btn_no);
+        mButtonYes.setOnClickListener(this);
+        mButtonNo.setOnClickListener(this);
+        return dialog;
+    }
+
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btn_yes:
+                sendResult();
+                //getActivity().finish();
+                break;
+            case R.id.btn_no:
+                dismiss();
+                break;
+            default:
+                break;
+        }
+        dismiss();
     }
 
     private void sendResult() {
@@ -60,4 +74,5 @@ public class SmsSendFragment extends DialogFragment{
         i.putExtra(EditSmsFragment.EXTRA_SMS, mDbSms);
         getTargetFragment().onActivityResult(getTargetRequestCode(), Activity.RESULT_OK, i);
     }
+
 }
