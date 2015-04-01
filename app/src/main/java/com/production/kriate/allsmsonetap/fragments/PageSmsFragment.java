@@ -135,9 +135,13 @@ public class PageSmsFragment extends Fragment {
                     FragmentManager fm = getActivity().getSupportFragmentManager();
                     SmsListAdapter adapter = (SmsListAdapter)listView.getAdapter();
                     DbSms dbSms = adapter.arrayDbSms.get(position);
+/*
                     SmsSendFragment dialog = SmsSendFragment.newInstance(dbSms);
                     dialog.setTargetFragment(PageSmsFragment.this, REQUEST_SEND_SMS);
                     dialog.show(fm, DIALOG_SEND_SMS);
+*/
+                    SmsSendFragment1 cdd = new SmsSendFragment1(getActivity());
+                    cdd.show();
                 }
             });
             ArrayList<DbSms> smsList;
