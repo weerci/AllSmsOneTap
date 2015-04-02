@@ -42,14 +42,14 @@ public class DialogAddRemoveCategoryFragment extends DialogFragment implements V
         mDbSms = (DbSms)getArguments().getSerializable(DialogAddRemoveCategoryFragment.EXTRA_SMS);
 
         TextView textView = (TextView) dialog.findViewById(R.id.dialog_send_sms_text);
+        TextView titleDialog = (TextView) dialog.findViewById(R.id.txt_dia);
+        titleDialog.setText(R.string.category_dialog_add);
         switch (getTargetRequestCode()) {
             case ADD_SMS:
                 textView.setText(getResources().getString(R.string.category_add_sms));
-                dialog.setTitle(getResources().getString(R.string.category_add_title));
                 break;
             default:
                 textView.setText(getResources().getString(R.string.category_remove_sms));
-                dialog.setTitle(getResources().getString(R.string.category_remove_title));
                 break;
         }
         mButtonYes = (Button) dialog.findViewById(R.id.btn_yes);

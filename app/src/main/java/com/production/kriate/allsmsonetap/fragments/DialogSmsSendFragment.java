@@ -37,6 +37,8 @@ public class DialogSmsSendFragment extends DialogFragment implements View.OnClic
         dialog.setContentView(R.layout.custom_dialog);
 
         mDbSms = (DbSms)getArguments().getSerializable(EXTRA_SMS);
+        TextView titleDialog = (TextView) dialog.findViewById(R.id.txt_dia);
+        titleDialog.setText(R.string.sms_sender_title);
         TextView textView = (TextView) dialog.findViewById(R.id.dialog_send_sms_text);
         String s = String.format(getResources().getString(R.string.sms_sender_text), mDbSms.getTextSms(), mDbSms.getPhoneNumber());
         textView.setText(s);

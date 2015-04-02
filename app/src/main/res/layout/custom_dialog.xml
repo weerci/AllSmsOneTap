@@ -10,7 +10,6 @@
         android:id="@+id/txt_dia"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/sms_sender_title"
         android:layout_margin="10dp"
         android:gravity="center_horizontal"
         android:textColor="@color/color_allsms_title_text"

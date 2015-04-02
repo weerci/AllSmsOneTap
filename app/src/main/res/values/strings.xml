@@ -34,6 +34,7 @@
     <string name="category_name_hint">Type a name of category.</string>
     <string name="category_sms_selected">Selected</string>
     <string name="category_sms_available">Available</string>
+    <string name="category_dialog_add">Edit of category</string>
     <string name="category_add_sms">Add selected sms-template to category?</string>
     <string name="category_remove_sms">Remove selected sms-template from category?</string>
     <string name="category_add_title">Add template</string>

@@ -8,20 +8,22 @@
     android:orientation="horizontal">
     <View
         android:layout_width="4dp"
-        android:layout_height="22dp"
+        android:layout_height="match_parent"
         android:background="@color/color_tab_text"
         android:layout_gravity="center_vertical"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginLeft="2dp"
         />
     <TextView
-        android:height="32dp"
         android:id="@+id/category_list_item_name_text_view"
+        android:layout_marginLeft="8dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:paddingLeft="12dp"
         android:textStyle="bold"
+        android:gravity="center_vertical"
         tools:text="Category name"
+        android:minHeight="?android:attr/listPreferredItemHeightSmall"
         />
 
 </LinearLayout>
