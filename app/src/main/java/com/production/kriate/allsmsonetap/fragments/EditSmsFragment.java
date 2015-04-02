@@ -37,6 +37,7 @@ public class EditSmsFragment extends Fragment{
     private EditText mTitleField, mTextField, mPhoneField;
     private CheckBox mIsFavorite;
     private Spinner mCategroySpinner;
+    private TextView mPhoneButton;
     private long mId;
 
 
@@ -106,6 +107,15 @@ public class EditSmsFragment extends Fragment{
             @Override
             public void onClick(View v) {
                 getActivity().finish();
+            }
+        });
+
+        mPhoneButton = (TextView) v.findViewById(R.id.phone_search_button);
+        mPhoneButton.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Intent.ACTION_PICK, ContactsContract.CommonDataKinds.Phone.CONTENT_URI);
+                startActivityForResult(i, REQUEST_CONTACT);
             }
         });
 /*
