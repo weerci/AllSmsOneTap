@@ -16,7 +16,7 @@ import com.production.kriate.allsmsonetap.db.DbSms;
 /**
  * Created by dima on 01.04.2015.
  */
-public class DialogSmsSendFragment extends DialogFragment implements View.OnClickListener {
+public class DialogSmsSendFragment extends DialogFragment implements View.OnClickListener  {
     public static final String EXTRA_SMS = "com.production.kriate.allsmsonetap.SmsSendFragment.EXTRA_SMS";
     public Button mButtonYes, mButtonNo;
     private DbSms mDbSms;
@@ -49,7 +49,6 @@ public class DialogSmsSendFragment extends DialogFragment implements View.OnClic
         mButtonNo.setOnClickListener(this);
         return dialog;
     }
-
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
