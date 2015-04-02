@@ -8,7 +8,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -168,7 +167,7 @@ public class PageSmsFragment extends Fragment {
                     SmsListAdapter adapter = (SmsListAdapter)listView.getAdapter();
                     DbSms dbSms = adapter.arrayDbSms.get(position);
 
-                    SmsSendFragment dialog = SmsSendFragment.newInstance(dbSms);
+                    DialogSmsSendFragment dialog = DialogSmsSendFragment.newInstance(dbSms);
                     dialog.setTargetFragment(PageSmsFragment.this, REQUEST_SEND_SMS);
                     dialog.show(fm, DIALOG_SEND_SMS);
                 }

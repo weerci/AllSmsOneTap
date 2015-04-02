@@ -56,11 +56,6 @@ public class EditSmsFragment extends Fragment{
         actionBar.setDisplayHomeAsUpEnabled(true);
     }
     @Override
-    public void onPrepareOptionsMenu(Menu menu) {
-        //menu.findItem(R.id.menu_item_new_template).setVisible(false);
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.edit_sms_layout, container, false);
 
@@ -74,7 +69,6 @@ public class EditSmsFragment extends Fragment{
 
         CategroyAdapter adapter = new CategroyAdapter(getActivity(), DbConnector.newInstance(getActivity()).getCategory().selectWithEmpty());
         adapter.setDropDownViewResource(R.layout.spinner_list_item);
-
         mCategroySpinner.setAdapter(adapter);
 
         mSms = (DbSms)getArguments().getSerializable(EXTRA_SMS);
@@ -91,7 +85,6 @@ public class EditSmsFragment extends Fragment{
                 int i = adapter.getPosition(dbCategory);
                 mCategroySpinner.setSelection(i, false);
             }
-
         }
 
         // Кнопки
@@ -124,7 +117,6 @@ public class EditSmsFragment extends Fragment{
             }
         });
 */
-
         return v;
     }
     @Override
@@ -163,7 +155,6 @@ public class EditSmsFragment extends Fragment{
     {
         return mIsFavorite.isChecked()? 1 : 0;
     }
-
     private class CategroyAdapter extends ArrayAdapter<DbCategory> {
 
         public CategroyAdapter(Context context, ArrayList<DbCategory> categories) {

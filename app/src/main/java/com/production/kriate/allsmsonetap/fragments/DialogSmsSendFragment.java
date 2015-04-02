@@ -16,15 +16,15 @@ import com.production.kriate.allsmsonetap.db.DbSms;
 /**
  * Created by dima on 01.04.2015.
  */
-public class SmsSendFragment extends DialogFragment implements View.OnClickListener {
+public class DialogSmsSendFragment extends DialogFragment implements View.OnClickListener {
     public static final String EXTRA_SMS = "com.production.kriate.allsmsonetap.SmsSendFragment.EXTRA_SMS";
     public Button mButtonYes, mButtonNo;
     private DbSms mDbSms;
 
-    public static SmsSendFragment newInstance(DbSms dbSms){
+    public static DialogSmsSendFragment newInstance(DbSms dbSms){
         Bundle args = new Bundle();
         args.putSerializable(EXTRA_SMS, dbSms);
-        SmsSendFragment fragment = new SmsSendFragment();
+        DialogSmsSendFragment fragment = new DialogSmsSendFragment();
         fragment.setArguments(args);
         return fragment;
     }
@@ -53,7 +53,6 @@ public class SmsSendFragment extends DialogFragment implements View.OnClickListe
         switch (v.getId()) {
             case R.id.btn_yes:
                 sendResult();
-                //getActivity().finish();
                 break;
             case R.id.btn_no:
                 dismiss();

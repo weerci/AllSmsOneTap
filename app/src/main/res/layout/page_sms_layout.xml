@@ -6,6 +6,7 @@
 
     <com.production.kriate.allsmsonetap.view.SlidingTabLayout
         android:id="@+id/sliding_tabs"
+        android:overScrollMode="never"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

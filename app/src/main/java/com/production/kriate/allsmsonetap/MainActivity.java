@@ -22,6 +22,7 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.production.kriate.allsmsonetap.fragments.ListCategoryFragment;
 import com.production.kriate.allsmsonetap.fragments.PageSmsFragment;
 
 import java.util.Locale;
@@ -135,6 +136,9 @@ public class MainActivity extends FragmentActivity {
         switch (position) {
             case 0:
                 fragment = PageSmsFragment.newInstance(indexPage);
+                break;
+            case 1:
+                fragment = ListCategoryFragment.newInstance();
                 break;
             default:
                 break;

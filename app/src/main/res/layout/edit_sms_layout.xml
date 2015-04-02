@@ -25,102 +25,101 @@
             android:text="@string/save"
             tools:ignore="ButtonStyle"/>
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="4dp"
+        android:orientation="vertical" >
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="4dp"
-            android:orientation="vertical" >
-            <LinearLayout
+            android:layout_marginTop="4dp"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:paddingLeft="4dp"
+                android:textColor="@color/color_allsms_title_text"
+                android:text="@string/title_template_label"
+                />
+            <EditText
+                android:id="@+id/sms_title_edit_text"
                 android:layout_width="match_parent"
-                android:layout_marginTop="4dp"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:paddingLeft="4dp"
+                android:inputType="textCapSentences"
+                android:hint="@string/template_title_hint"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="4dp"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:paddingLeft="4dp"
+                android:textColor="@color/color_allsms_title_text"
+                android:text="@string/text_template_label"
+                />
+            <EditText
+                android:id="@+id/sms_text_edit_text"
+                android:paddingLeft="4dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textCapSentences"
+                android:hint="@string/text_template_hint"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="4dp"
+            android:layout_height="wrap_content">
                 <TextView
                     android:layout_width="70dp"
                     android:layout_height="wrap_content"
                     android:paddingLeft="4dp"
                     android:textColor="@color/color_allsms_title_text"
-                    android:text="@string/title_template_label"
+                    android:text="@string/phone_template_label"
                     />
                 <EditText
-                    android:id="@+id/sms_title_edit_text"
+                    android:id="@+id/phone_number_edit_text"
                     android:paddingLeft="4dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textCapSentences"
-                    android:hint="@string/template_title_hint"/>
-            </LinearLayout>
-            <LinearLayout
+                    android:hint="@string/phone_template_hint"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="4dp"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/color_allsms_title_text"
+                android:paddingLeft="4dp"
+                android:text="@string/text_category_label"
+                />
+            <Spinner
+                android:id="@+id/sms_category_spinner"
                 android:layout_width="match_parent"
-                android:layout_marginTop="4dp"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:layout_width="70dp"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="4dp"
-                    android:textColor="@color/color_allsms_title_text"
-                    android:text="@string/text_template_label"
-                    />
-                <EditText
-                    android:id="@+id/sms_text_edit_text"
-                    android:paddingLeft="4dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textCapSentences"
-                    android:hint="@string/text_template_hint"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_marginTop="4dp"
-                android:layout_height="wrap_content">
-                    <TextView
-                        android:layout_width="70dp"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="4dp"
-                        android:textColor="@color/color_allsms_title_text"
-                        android:text="@string/phone_template_label"
-                        />
-                    <EditText
-                        android:id="@+id/phone_number_edit_text"
-                        android:paddingLeft="4dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="@string/phone_template_hint"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_marginTop="4dp"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:layout_width="70dp"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/color_allsms_title_text"
-                    android:paddingLeft="4dp"
-                    android:text="@string/text_category_label"
-                    />
-                <Spinner
-                    android:id="@+id/sms_category_spinner"
-                    android:layout_width="match_parent"
-                    android:entries="@array/screen_array"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_marginTop="4dp"
-                android:layout_height="wrap_content">
-                <CheckBox
-                    android:id="@+id/sms_is_favorite_checkbox"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    tools:ignore="RtlHardcoded"/>
-                <TextView
-                    android:layout_width="70dp"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="4dp"
-                    android:textColor="@color/color_allsms_title_text"
-                    android:text="@string/favorite_template_label"
-                    />
-
-            </LinearLayout>
+                android:entries="@array/screen_array"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="4dp"
+            android:layout_height="wrap_content">
+            <CheckBox
+                android:id="@+id/sms_is_favorite_checkbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:ignore="RtlHardcoded"/>
+            <TextView
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:paddingLeft="4dp"
+                android:textColor="@color/color_allsms_title_text"
+                android:text="@string/favorite_template_label"
+                />
 
         </LinearLayout>
+    </LinearLayout>
 </RelativeLayout>

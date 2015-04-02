@@ -30,7 +30,7 @@
 
     <!--Редактирование категории-->
     <string name="header_category_editor">Edit of categroy</string>
-    <string name="category_name_label">Name category</string>
+    <string name="category_name_label">Name</string>
     <string name="category_name_hint">Type a name of category.</string>
     <string name="category_sms_selected">Selected</string>
     <string name="category_sms_available">Available</string>

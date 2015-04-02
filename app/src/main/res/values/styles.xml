@@ -13,6 +13,7 @@
         <item name="android:editTextStyle">@style/EditTextAppTheme</item>
         <item name="android:checkboxStyle">@style/CheckBoxAppTheme</item>
         <item name="android:buttonStyle">@style/ButtonAppTheme</item>
+        <item name="android:listPopupWindowStyle">@style/PopUpStyle</item>
         <item name="android:imageButtonStyle">@style/ImageButtonAppTheme</item>
     </style>
 
@@ -71,4 +72,11 @@
         <item name="android:textSize">10sp</item>
         <item name="android:textStyle">italic</item>
     </style>
+
+    <style name="PopUpStyle" parent="android:Widget.PopupMenu" >
+        <item name="android:textSize">10sp</item>
+        <item name="android:textStyle">italic</item>
+    </style>
+
+
 </resources>

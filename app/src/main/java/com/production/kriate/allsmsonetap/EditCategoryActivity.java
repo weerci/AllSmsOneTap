@@ -4,20 +4,19 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
-import android.view.MenuItem;
 
-import com.production.kriate.allsmsonetap.db.DbSms;
-import com.production.kriate.allsmsonetap.fragments.EditSmsFragment;
+import com.production.kriate.allsmsonetap.db.DbCategory;
+import com.production.kriate.allsmsonetap.fragments.EditCategoryFragment;
 
-/*Активность вызова фрагмента создания/изменения шаблона SMS*/
-public class EditSmsActivity extends FragmentActivity {
+/**
+ * Активность вызова фрагмента создания/редактирования категорий
+ */
+public class EditCategoryActivity extends FragmentActivity {
 
     private Fragment createFragment() {
-        if(getIntent().hasExtra(EditSmsFragment.EXTRA_SMS)) {
-            DbSms sms = (DbSms) getIntent().getSerializableExtra(EditSmsFragment.EXTRA_SMS);
-            return EditSmsFragment.newInstance(sms);
-        } else
-            return EditSmsFragment.newInstance(null);
+        getIntent().hasExtra(EditCategoryFragment.EXTRA_CATEGORY);
+        DbCategory category = (DbCategory) getIntent().getSerializableExtra(EditCategoryFragment.EXTRA_CATEGORY);
+        return EditCategoryFragment.newInstance(category);
     }
 
     @Override
@@ -34,5 +33,4 @@ public class EditSmsActivity extends FragmentActivity {
                     .commit();
         }
     }
-
 }
