@@ -48,7 +48,6 @@ public class SmsSendFragment extends DialogFragment implements View.OnClickListe
         return dialog;
     }
 
-
     @Override
     public void onClick(View v) {
         switch (v.getId()) {

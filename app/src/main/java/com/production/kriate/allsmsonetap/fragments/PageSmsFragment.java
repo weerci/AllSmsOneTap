@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -89,6 +90,35 @@ public class PageSmsFragment extends Fragment {
         }
     }
     @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        menu.setHeaderIcon(R.drawable.ic_launcher);
+        getActivity().getMenuInflater().inflate(R.menu.menu_list_template_context, menu);
+    }
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        int position = info.position;
+        View v = (View)info.targetView.getParent();
+        ListView listView = (ListView)v.findViewById(R.id.list_view_sms);
+
+        SmsListAdapter adapter = (SmsListAdapter)listView.getAdapter();
+        DbSms dbSms = adapter.arrayDbSms.get(position);
+        switch (item.getItemId()) {
+            case R.id.menu_item_delete_template:
+                DbConnector.newInstance(getActivity()).getSms().deleteOne(dbSms.getId());
+                ((MainActivity)getActivity()).selectItem(0, mViewPager.getCurrentItem());
+                return true;
+            case R.id.menu_item_edit_template:
+                Intent i = new Intent(getActivity(), EditSmsActivity.class);
+                dbSms.setCategory(DbConnector.newInstance(getActivity()).getCategory().selectForSms(dbSms.getId()));
+                i.putExtra(EditSmsFragment.EXTRA_SMS, dbSms);
+                startActivityForResult(i, SMS_UPDATE);
+                return true;
+        }
+        return super.onContextItemSelected(item);
+   }
+    @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == Activity.RESULT_OK) {
             DbSms dbSms = (DbSms) data.getExtras().getSerializable(EditSmsFragment.EXTRA_SMS);
@@ -141,8 +171,6 @@ public class PageSmsFragment extends Fragment {
                     SmsSendFragment dialog = SmsSendFragment.newInstance(dbSms);
                     dialog.setTargetFragment(PageSmsFragment.this, REQUEST_SEND_SMS);
                     dialog.show(fm, DIALOG_SEND_SMS);
-//                    SmsSendFragment cdd = new SmsSendFragment1(getActivity());
-//                    cdd.show();
                 }
             });
             ArrayList<DbSms> smsList;

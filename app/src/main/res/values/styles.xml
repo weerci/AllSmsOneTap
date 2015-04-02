@@ -71,5 +71,4 @@
         <item name="android:textSize">10sp</item>
         <item name="android:textStyle">italic</item>
     </style>
-
 </resources>

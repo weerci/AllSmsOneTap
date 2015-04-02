@@ -77,6 +77,8 @@ public class EditSmsFragment extends Fragment{
 
         mCategroySpinner.setAdapter(adapter);
 
+        mSms = (DbSms)getArguments().getSerializable(EXTRA_SMS);
+
         if (mSms != null) {
             mId = mSms.getId();
             mTitleField.setText(mSms.getTitleSms());
