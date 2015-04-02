@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="192dp"
+            android:layout_height="192dp"
+            android:src="@drawable/sms_plane"
+            android:layout_gravity="center_horizontal"
+            android:contentDescription="@string/image_content_plane"/>
+        <TextView
+            android:text="@string/about_string_title"
+            style="@style/text_about_title"/>
+        <TextView
+            android:id="@+id/about_text_view_id"
+            style="@style/text_about_text"
+            android:autoLink="email"
+            tools:ignore="Deprecated"/>
+    </LinearLayout>
+
+</ScrollView>

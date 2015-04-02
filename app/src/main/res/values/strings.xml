@@ -54,6 +54,11 @@
     <string name="action_add_sms">Create new SMS</string>
     <string name="action_close">Close</string>
 
+    <!-- about -->
+    <string name="about_string_title">"All Sms by one tap"</string>
+    <string name="about_string_description">Supported OS: Android\nVersion: %1$s\nDeveloper: OOO «Kriate»
+        (Krasnoyars city, Russian federation)\ne–mail: balu@kriate.ru\nтел.: (391) 215-44-30</string>
+
     <string-array name="screen_array">
         <item>All Sms</item>
         <item>Category</item>

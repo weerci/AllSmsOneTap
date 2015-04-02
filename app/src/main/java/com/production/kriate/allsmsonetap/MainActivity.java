@@ -7,7 +7,9 @@ import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -22,6 +24,7 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.production.kriate.allsmsonetap.fragments.AboutFragment;
 import com.production.kriate.allsmsonetap.fragments.ListCategoryFragment;
 import com.production.kriate.allsmsonetap.fragments.PageSmsFragment;
 
@@ -124,13 +127,33 @@ public class MainActivity extends FragmentActivity {
         super.onConfigurationChanged(newConfig);
         mDrawerToggle.onConfigurationChanged(newConfig);
     }
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_BACK:
+                if (this.getLocalClassName().equals("MainActivity")) {
+                    selectItem(0, 0);
+                    return true;
+                }
+
+            case KeyEvent.KEYCODE_MENU:
+                if(mDrawerLayout.isDrawerVisible(GravityCompat.START)){
+                    mDrawerLayout.closeDrawer(GravityCompat.START);
+                } else {
+                    mDrawerLayout.openDrawer(GravityCompat.START);
+                }
+
+                break;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             selectItem(position, 0);
         }
     }
-
     public void selectItem(int position, int indexPage) {
         Fragment fragment = null;
         switch (position) {
@@ -139,6 +162,9 @@ public class MainActivity extends FragmentActivity {
                 break;
             case 1:
                 fragment = ListCategoryFragment.newInstance();
+                break;
+            case 3:
+                fragment = AboutFragment.newInstance();
                 break;
             default:
                 break;
