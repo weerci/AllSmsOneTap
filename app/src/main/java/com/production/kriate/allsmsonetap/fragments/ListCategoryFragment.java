@@ -13,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.production.kriate.allsmsonetap.EditCategoryActivity;
 import com.production.kriate.allsmsonetap.R;
@@ -66,9 +67,14 @@ public class ListCategoryFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()) {
             case R.id.menu_item_new_template:
-                Intent i = new Intent(getActivity(), EditCategoryActivity.class);
-                startActivityForResult(i, ListCategoryFragment.CATEGORY_INSERT);
-                return true;
+                if (DbConnector.newInstance(getActivity()).getCategory().getCountCategories() < 1) {
+                    Intent i = new Intent(getActivity(), EditCategoryActivity.class);
+                    startActivityForResult(i, ListCategoryFragment.CATEGORY_INSERT);
+                    return true;
+                } else {
+                    Toast.makeText(getActivity(), R.string.category_count_toast, Toast.LENGTH_SHORT);
+                    return super.onOptionsItemSelected(item);
+                }
             default:
                 return super.onOptionsItemSelected(item);
         }

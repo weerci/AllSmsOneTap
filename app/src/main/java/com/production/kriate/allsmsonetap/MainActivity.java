@@ -163,7 +163,7 @@ public class MainActivity extends FragmentActivity {
             case 1:
                 fragment = ListCategoryFragment.newInstance();
                 break;
-            case 3:
+            case 2:
                 fragment = AboutFragment.newInstance();
                 break;
             default:

@@ -39,6 +39,7 @@
     <string name="category_remove_sms">Remove selected sms-template from category?</string>
     <string name="category_add_title">Add template</string>
     <string name="category_remove_title">Remove template</string>
+    <string name="category_count_toast">In this version of programm available only one category</string>
     <string name="category_null">--Without category--</string>
 
     <!--Отправка сообщений-->
@@ -63,7 +64,6 @@
     <string-array name="screen_array">
         <item>All Sms</item>
         <item>Category</item>
-        <item>Settings</item>
         <item>About</item>
     </string-array>
     <string name="drawer_open">Open navigation drawer</string>
