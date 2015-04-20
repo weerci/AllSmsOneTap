@@ -70,11 +70,10 @@ public class ListCategoryFragment extends Fragment {
                 if (DbConnector.newInstance(getActivity()).getCategory().getCountCategories() < 1) {
                     Intent i = new Intent(getActivity(), EditCategoryActivity.class);
                     startActivityForResult(i, ListCategoryFragment.CATEGORY_INSERT);
-                    return true;
                 } else {
-                    Toast.makeText(getActivity(), R.string.category_count_toast, Toast.LENGTH_SHORT);
-                    return super.onOptionsItemSelected(item);
+                    Toast.makeText(getActivity(), R.string.category_count_toast, Toast.LENGTH_LONG).show();
                 }
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

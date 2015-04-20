@@ -65,7 +65,6 @@
     <string-array name="screen_array">
         <item>Все СМС</item>
         <item>Категории</item>
-        <item>Настройки</item>
         <item>О программе</item>
     </string-array>
 
