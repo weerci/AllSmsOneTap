@@ -42,6 +42,10 @@
     <string name="category_count_toast">In this version of programm available only one category</string>
     <string name="category_null">--Without category--</string>
 
+    <!--Настройки-->
+    <string name="settings_buy_categories_text">Are you by an infinity number of categories?</string>
+    <string name="settings_buy_categories_button_purchase">Purchase</string>
+
     <!--Отправка сообщений-->
     <string name="sms_sender_title">Send message?</string>
     <string name="sms_sender_text">This text \'%1$s\', will be send to the number \'%2$s\'.</string>
@@ -64,6 +68,7 @@
     <string-array name="screen_array">
         <item>All Sms</item>
         <item>Category</item>
+        <item>Settings</item>
         <item>About</item>
     </string-array>
     <string name="drawer_open">Open navigation drawer</string>

@@ -42,6 +42,10 @@
     <string name="category_remove_title">Удалить шаблон</string>
     <string name="category_null">--Категория не выбрана--</string>
 
+    <!--Настройки-->
+    <string name="settings_buy_categories_text">Купить категории?</string>
+    <string name="settings_buy_categories_button_purchase">Приобрести</string>
+
     <!--Отправка сообщений-->
     <string name="sms_sender_title">Отправить сообщение?</string>
     <string name="sms_sender_text">Следующий текст \'%1$s\', будет отправлен на номер \'%2$s\'.</string>
@@ -65,6 +69,7 @@
     <string-array name="screen_array">
         <item>Все СМС</item>
         <item>Категории</item>
+        <item>Настройки</item>
         <item>О программе</item>
     </string-array>
 
