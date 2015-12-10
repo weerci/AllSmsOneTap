@@ -3,6 +3,7 @@ package com.production.kriate.allsmsonetap.fragments;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -21,7 +22,12 @@ public class SettingsFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setHasOptionsMenu(false);
+        setHasOptionsMenu(true);
+    }
+
+    @Override
+    public void onPrepareOptionsMenu(Menu menu) {
+        menu.findItem(R.id.menu_item_new_template).setVisible(false);
     }
 
     @Override

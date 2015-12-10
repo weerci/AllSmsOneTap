@@ -25,10 +25,6 @@
     <string name="category_count_toast">В этой версии ПО доступна только одна категория</string>
     <string name="empty_categroy">Категория не задана</string>
 
-    <!--Настройки-->
-    <string name="setting_purchase_text">Дляя создания более двух шаблонов, необходимо произвести покупку этой опции. Начать процесс покупки?</string>
-    <string name="header_purchase_editor">Покупка категорий</string>
-
     <!--Редактирование категории-->
     <string name="header_category_editor">Редактирование категории</string>
     <string name="category_name_label">Имя</string>
@@ -43,8 +39,8 @@
     <string name="category_null">--Категория не выбрана--</string>
 
     <!--Настройки-->
-    <string name="settings_buy_categories_text">Купить категории?</string>
-    <string name="settings_buy_categories_button_purchase">Приобрести</string>
+    <string name="settings_buy_categories_text">Премиум функции</string>
+    <string name="settings_buy_categories_button_purchase">Посмотреть</string>
 
     <!--Отправка сообщений-->
     <string name="sms_sender_title">Отправить сообщение?</string>

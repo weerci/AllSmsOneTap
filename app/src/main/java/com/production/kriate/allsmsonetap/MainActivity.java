@@ -92,12 +92,14 @@ public class MainActivity extends FragmentActivity {
         }
 
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main, menu);
         return super.onCreateOptionsMenu(menu);
     }
+
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         // If the nav drawer is open, hide action items related to the content view
@@ -112,17 +114,20 @@ public class MainActivity extends FragmentActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
     @Override
     public void setTitle(CharSequence title) {
         mTitle = title;
         getActionBar().setTitle(mTitle);
 
     }
+
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
         mDrawerToggle.syncState();
     }
+
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
@@ -191,3 +196,15 @@ public class MainActivity extends FragmentActivity {
 
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
