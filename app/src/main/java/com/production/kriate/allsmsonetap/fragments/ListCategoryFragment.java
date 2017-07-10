@@ -15,10 +15,18 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.production.kriate.allsmsonetap.App;
 import com.production.kriate.allsmsonetap.EditCategoryActivity;
 import com.production.kriate.allsmsonetap.R;
 import com.production.kriate.allsmsonetap.db.DbCategory;
 import com.production.kriate.allsmsonetap.db.DbConnector;
+
+import org.solovyev.android.checkout.ActivityCheckout;
+import org.solovyev.android.checkout.Billing;
+import org.solovyev.android.checkout.Checkout;
+import org.solovyev.android.checkout.Inventory;
+import org.solovyev.android.checkout.ProductTypes;
+import org.solovyev.android.checkout.Sku;
 
 import java.util.ArrayList;
 
@@ -42,7 +50,48 @@ public class ListCategoryFragment extends Fragment {
 
         ArrayList<DbCategory> categoryList = DbConnector.newInstance(getActivity()).getCategory().selectAll();
         mCategoryListAdapter = new CategoryListAdapter(categoryList);
+
+        final Billing billing = App.get().getBilling();
+        mCheckout = Checkout.forActivity(getActivity(), billing);
+        mCheckout.start();
+        reloadInventory();
+
     }
+
+    @Override
+    public void onDestroy() {
+        mCheckout.stop();
+        super.onDestroy();
+    }
+//region Billing
+
+    private Boolean mIsPurchased = false;
+
+    private ActivityCheckout mCheckout;
+    private final String skuName = "all_sms_by_one_type_unlimited_category";
+
+    private void reloadInventory() {
+        final Inventory.Request request = Inventory.Request.create();
+        // load purchase info
+        request.loadAllPurchases();
+        // load SKU details
+        request.loadSkus(ProductTypes.IN_APP, skuName);
+        mCheckout.loadInventory(request, new InventoryCallback());
+    }
+
+    private Inventory.Product mProduct;
+    private class InventoryCallback implements Inventory.Callback {
+        @Override
+        public void onLoaded(Inventory.Products products) {
+            mProduct = products.get(ProductTypes.IN_APP);
+            if (mProduct.supported) {
+                mIsPurchased = mProduct.isPurchased(mProduct.getSku(skuName));
+            }
+        }
+    }
+
+    //endregion
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 
