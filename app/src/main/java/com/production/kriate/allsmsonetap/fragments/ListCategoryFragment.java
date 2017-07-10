@@ -116,7 +116,8 @@ public class ListCategoryFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()) {
             case R.id.menu_item_new_template:
-                if (DbConnector.newInstance(getActivity()).getCategory().getCountCategories() < 1) {
+                if (DbConnector.newInstance(getActivity()).getCategory().getCountCategories() < 1 ||
+                        mIsPurchased) {
                     Intent i = new Intent(getActivity(), EditCategoryActivity.class);
                     startActivityForResult(i, ListCategoryFragment.CATEGORY_INSERT);
                 } else {
