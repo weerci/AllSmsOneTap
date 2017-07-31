@@ -19,6 +19,7 @@ import com.production.kriate.allsmsonetap.EditCategoryActivity;
 import com.production.kriate.allsmsonetap.R;
 import com.production.kriate.allsmsonetap.db.DbCategory;
 import com.production.kriate.allsmsonetap.db.DbConnector;
+import com.production.kriate.allsmsonetap.tools.SmsBilling;
 
 import java.util.ArrayList;
 
@@ -67,12 +68,19 @@ public class ListCategoryFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()) {
             case R.id.menu_item_new_template:
+                if (SmsBilling.getIsPurchased() || DbConnector.newInstance(getActivity()).getCategory().getCountCategories() < 1){
+                    Intent i = new Intent(getActivity(), EditCategoryActivity.class);
+                    startActivityForResult(i, ListCategoryFragment.CATEGORY_INSERT);
+                } else
+                    SmsBilling.Item(getActivity()).buy();
+/*
                 if (DbConnector.newInstance(getActivity()).getCategory().getCountCategories() < 1) {
                     Intent i = new Intent(getActivity(), EditCategoryActivity.class);
                     startActivityForResult(i, ListCategoryFragment.CATEGORY_INSERT);
                 } else {
                     Toast.makeText(getActivity(), R.string.category_count_toast, Toast.LENGTH_LONG).show();
                 }
+*/
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

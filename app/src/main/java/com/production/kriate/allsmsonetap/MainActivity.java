@@ -1,6 +1,7 @@
 package com.production.kriate.allsmsonetap;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -27,6 +28,7 @@ import android.widget.TextView;
 import com.production.kriate.allsmsonetap.fragments.AboutFragment;
 import com.production.kriate.allsmsonetap.fragments.ListCategoryFragment;
 import com.production.kriate.allsmsonetap.fragments.PageSmsFragment;
+import com.production.kriate.allsmsonetap.tools.SmsBilling;
 
 import java.util.Locale;
 
@@ -41,6 +43,12 @@ public class MainActivity extends FragmentActivity {
     private CharSequence mDrawerTitle;
     private CharSequence mTitle;
     private String[] mScreenTitles;
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        SmsBilling.Item(this).getCheckout().onActivityResult(requestCode, resultCode, data);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +98,8 @@ public class MainActivity extends FragmentActivity {
             selectItem(0, 0);
         }
 
+        // Получаем данные о покупках
+        SmsBilling.Item(this);
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
