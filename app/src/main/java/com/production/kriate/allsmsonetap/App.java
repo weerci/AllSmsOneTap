@@ -22,6 +22,7 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         billing.connect();
+        SmsBackupAgent ba = new SmsBackupAgent();
     }
 
     // Context

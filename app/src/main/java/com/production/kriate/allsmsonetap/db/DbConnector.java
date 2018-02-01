@@ -6,6 +6,9 @@ import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import com.production.kriate.allsmsonetap.SmsBackupAgent;
+
 import java.util.ArrayList;
 
 /**
@@ -18,11 +21,13 @@ public class DbConnector {
     private static SQLiteDatabase mDataBase;
     private static DbConnector sDbConnector;
     private Context mContext;
+    private String mDbName;
 
     private DbConnector(Context context) {
         OpenHelper mOpenHelper = new OpenHelper(context);
         mDataBase = mOpenHelper.getWritableDatabase();
         mContext = context;
+        mDbName = mOpenHelper.getDatabaseName();
     }
     public static DbConnector newInstance(Context c){
         if (sDbConnector == null) {
@@ -30,6 +35,7 @@ public class DbConnector {
         }
         return  sDbConnector;
     }
+
 
     public Sms getSms(){
         return new Sms(mContext);
@@ -39,6 +45,7 @@ public class DbConnector {
     }
 
     private class OpenHelper extends SQLiteOpenHelper {
+
         // Данные базы данных и таблиц
         private static final String DATABASE_NAME = "template.db";
         private static final int DATABASE_VERSION = 2;
@@ -51,6 +58,7 @@ public class DbConnector {
             mQueries.add("CREATE TABLE category (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL); ");
             mQueries.add("CREATE TABLE sms_category (id_sms INTEGER REFERENCES sms (id), id_category INTEGER REFERENCES category (id), PRIMARY KEY (id_sms ASC, id_category ASC)); ");
         }
+
 
         @Override
         public void onCreate(SQLiteDatabase db) {
@@ -95,7 +103,8 @@ public class DbConnector {
             cv.put(TableSms.COLUMN_PRIORITY, ds.getPriority());
 
 
-            long i = DbSms.EMPTY_ID;
+            long i;
+            i = DbSms.EMPTY_ID;
             mDataBase.beginTransaction();
             try {
                 i = mDataBase.insert(TableSms.TABLE_NAME, null, cv);
@@ -109,6 +118,7 @@ public class DbConnector {
                 return i;
             } finally {
                 mDataBase.endTransaction();
+                SmsBackupAgent.requestBackup();
             }
         }
         public int update(DbSms ds) {
@@ -406,6 +416,7 @@ public class DbConnector {
         private static final int NUM_COLUMN_PRIORITY = 4;
 
     }
+
     // Таблица категорий Sms
     private static class TableCategory{
         private static final String TABLE_NAME = "category";
@@ -418,6 +429,7 @@ public class DbConnector {
         private static final int NUM_COLUMN_ID = 0;
         private static final int NUM_COLUMN_NAME = 1;
     }
+
     // Таблица связка sms и категорий
     private static class TableSmsCategory{
         private static final String TABLE_NAME = "sms_category";

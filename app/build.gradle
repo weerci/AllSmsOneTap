@@ -30,8 +30,8 @@ android {
         applicationId "com.production.kriate.allsmsonetap"
         minSdkVersion 19
         targetSdkVersion 25
-        versionCode 182
-        versionName '1.0.182'
+        versionCode 183
+        versionName '1.0.183'
     }
     buildTypes {
         release {
