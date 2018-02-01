@@ -1,6 +1,7 @@
 package com.production.kriate.allsmsonetap;
 
 import android.app.Application;
+import android.app.backup.BackupManager;
 
 import com.production.kriate.allsmsonetap.tools.Encryption;
 

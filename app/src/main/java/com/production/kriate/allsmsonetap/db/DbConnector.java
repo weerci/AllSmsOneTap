@@ -85,6 +85,7 @@ public class DbConnector {
         public Sms(Context context){
             mContext = context;
         }
+
         // region + updater
         public long insert(DbSms ds) {
             ContentValues cv = new ContentValues();
@@ -206,6 +207,7 @@ public class DbConnector {
         public Category(Context context){
             mContext = context;
         }
+
         // region + Updaters
         public long insert(DbCategory dc){
             ContentValues cv = new ContentValues();
