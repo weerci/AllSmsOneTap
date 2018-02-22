@@ -6,6 +6,10 @@ import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import com.production.kriate.allsmsonetap.App;
+import com.production.kriate.allsmsonetap.drive.GDrive;
+
 import java.util.ArrayList;
 
 /**
@@ -41,7 +45,7 @@ public class DbConnector {
     private class OpenHelper extends SQLiteOpenHelper {
         // Данные базы данных и таблиц
         private static final String DATABASE_NAME = "template.db";
-        private static final int DATABASE_VERSION = 2;
+        private static final int DATABASE_VERSION = 3;
         private ArrayList<String> mQueries = new ArrayList<>();
 
         private OpenHelper(Context context) {
@@ -50,6 +54,8 @@ public class DbConnector {
             mQueries.add("CREATE TABLE sms (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, TitleSms TEXT, TextSms TEXT, PhoneNumber TEXT, Priority INTEGER); ");
             mQueries.add("CREATE TABLE category (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL); ");
             mQueries.add("CREATE TABLE sms_category (id_sms INTEGER REFERENCES sms (id), id_category INTEGER REFERENCES category (id), PRIMARY KEY (id_sms ASC, id_category ASC)); ");
+            mQueries.add("CREATE TABLE count (id_cnt INTEGER );");
+            mQueries.add("INSERT INTO count(id_cnt)VALUES (3);");
         }
 
         @Override
@@ -69,8 +75,15 @@ public class DbConnector {
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
             db.beginTransaction();
             try {
-                for (int i = oldVersion+2/*Коррекция изначальная, 2 версия, имела 3 записи*/; i <= mQueries.size(); i++) {
-                    db.execSQL(mQueries.get(i));
+                switch (oldVersion)
+                {
+                    case 2: // Добавляется таблица count, данные сохраняются на диск
+                            db.execSQL(mQueries.get(3));
+                            db.execSQL(mQueries.get(4));
+                            //GDrive.Send();
+                        break;
+                    default:
+                        break;
                 }
                 db.setTransactionSuccessful();
             } finally {

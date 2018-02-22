@@ -2,6 +2,8 @@ package com.production.kriate.allsmsonetap;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -24,11 +26,16 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.production.kriate.allsmsonetap.drive.GDrive;
 import com.production.kriate.allsmsonetap.fragments.AboutFragment;
 import com.production.kriate.allsmsonetap.fragments.ListCategoryFragment;
 import com.production.kriate.allsmsonetap.fragments.PageSmsFragment;
+import com.production.kriate.allsmsonetap.tools.AllSmsUtils;
 import com.production.kriate.allsmsonetap.tools.SmsBilling;
+
+import org.solovyev.android.checkout.ActivityCheckout;
 
 import java.util.Locale;
 
@@ -44,10 +51,21 @@ public class MainActivity extends FragmentActivity {
     private CharSequence mTitle;
     private String[] mScreenTitles;
 
+    public static final int REQUEST_CODE_SIGN_IN = 0;
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        SmsBilling.Item(this).getCheckout().onActivityResult(requestCode, resultCode, data);
+
+        switch (requestCode){
+            case 0XCAFE:
+                SmsBilling.Item(this).getCheckout().onActivityResult(requestCode, resultCode, data);
+                break;
+            case REQUEST_CODE_SIGN_IN:
+                Toast.makeText(getApplicationContext(), "REQUEST_CODE_SIGN_IN result code =" + resultCode,Toast.LENGTH_LONG);
+                break;
+        }
+
     }
 
     @Override
@@ -70,7 +88,7 @@ public class MainActivity extends FragmentActivity {
         });
 
         // set up the drawer's list view with items and click listener
-        mDrawerList.setAdapter(new ArrayAdapter<String>(this,
+        mDrawerList.setAdapter(new ArrayAdapter<>(this,
                 R.layout.drawer_list_item, mScreenTitles));
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 
@@ -100,6 +118,9 @@ public class MainActivity extends FragmentActivity {
 
         // Получаем данные о покупках
         SmsBilling.Item(this);
+
+        // Авторизуемся для сохранения данных на google dirve
+        GDrive.Item(this).Auth();
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
