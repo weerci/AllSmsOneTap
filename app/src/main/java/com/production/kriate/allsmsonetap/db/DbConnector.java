@@ -92,12 +92,14 @@ public class DbConnector {
         }
     }
 
-    // Реализует взаимодействие с таблицой sms
+    //region Work with tables
+
     public static class Sms{
         private Context mContext;
         public Sms(Context context){
             mContext = context;
         }
+
         // region + updater
         public long insert(DbSms ds) {
             ContentValues cv = new ContentValues();
@@ -213,12 +215,12 @@ public class DbConnector {
         // endregion
     }
 
-    // Реализует взаимодействие с таблицей category
     public static class Category{
         private Context mContext;
         public Category(Context context){
             mContext = context;
         }
+
         // region + Updaters
         public long insert(DbCategory dc){
             ContentValues cv = new ContentValues();
@@ -273,22 +275,6 @@ public class DbConnector {
         // endregion
 
         // region +Selectors
-        public DbCategory selectOne(long id){
-            Cursor mCursor = mDataBase.query(TableCategory.TABLE_NAME, null, TableCategory.COLUMN_ID + " = ?", new String[] { String.valueOf(id) },
-                    null, null, TableCategory.COLUMN_NAME);
-
-            try {
-                mCursor.moveToFirst();
-                if (!mCursor.isAfterLast()){
-                    String name  = mCursor.getString(TableCategory.NUM_COLUMN_NAME);
-                    return new DbCategory(id, name, null);
-                } else {
-                    return DbCategory.getEmptyCategory(mContext);
-                }
-            } finally {
-                mCursor.close();
-            }
-        }
         public DbCategory selectForSms(long idSms){
             String queryText = String.format("select c.%1$s, c.%2$s from category c left join sms_category sc on c.id = sc.id_category where sc.id_sms = %3$s",
                     TableCategory.COLUMN_ID,
@@ -397,6 +383,12 @@ public class DbConnector {
         // endregion
     }
 
+    public
+
+    //endregion
+
+    //region Table's scheme
+
     // Таблица шаблонов Sms
     private static class TableSms {
         // Название таблицы
@@ -415,8 +407,22 @@ public class DbConnector {
         private static final int NUM_COLUMN_TEXT_SMS = 2;
         private static final int NUM_COLUMN_PHONE_NUMBER = 3;
         private static final int NUM_COLUMN_PRIORITY = 4;
+    }
+
+    private static class TableSettings{
+        // Название таблицы
+        private static final String TABLE_NAME = "settings";
+
+        // Название столбцов
+        private static final String COLUMN_NAME = "name";
+        private static final String COLUMN_VALUE = "value";
+
+        // Номера столбцов
+        private static final int NUM_COLUMN_NAME = 0;
+        private static final int NUM_COLUMN_VALUE = 1;
 
     }
+
     // Таблица категорий Sms
     private static class TableCategory{
         private static final String TABLE_NAME = "category";
@@ -429,6 +435,7 @@ public class DbConnector {
         private static final int NUM_COLUMN_ID = 0;
         private static final int NUM_COLUMN_NAME = 1;
     }
+
     // Таблица связка sms и категорий
     private static class TableSmsCategory{
         private static final String TABLE_NAME = "sms_category";
@@ -440,5 +447,7 @@ public class DbConnector {
         private static final int NUM_COLUMN_ID_SMS = 0;
         private static final int NUM_COLUMN_ID_CATEGORY = 1;
     }
+
+    //endregion
 }
 

@@ -20,7 +20,7 @@ android {
         }
     }
     compileSdkVersion 25
-    buildToolsVersion "26.0.0"
+    buildToolsVersion '26.0.2'
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -31,6 +31,7 @@ android {
         targetSdkVersion 25
         versionCode 182
         versionName '1.0.182'
+        setProperty("archivesBaseName", "AllSms-$versionName")
     }
     buildTypes {
         release {

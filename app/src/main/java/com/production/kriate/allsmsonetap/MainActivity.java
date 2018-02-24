@@ -80,12 +80,7 @@ public class MainActivity extends FragmentActivity {
         mRelativeLayout = (RelativeLayout) findViewById(R.id.relative_layout);
 
         mTextViewClose = (TextView) findViewById(R.id.text_view_exit);
-        mTextViewClose.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        mTextViewClose.setOnClickListener(v -> finish());
 
         // set up the drawer's list view with items and click listener
         mDrawerList.setAdapter(new ArrayAdapter<>(this,
@@ -119,7 +114,7 @@ public class MainActivity extends FragmentActivity {
         // Получаем данные о покупках
         SmsBilling.Item(this);
 
-        // Авторизуемся для сохранения данных на google dirve
+        // Авторизуемся для сохранения данных на google drive
         GDrive.Item(this).Auth();
     }
     @Override

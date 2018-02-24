@@ -69,6 +69,7 @@ public class GDrive {
 
     // Пользователь авторизуется
     public void Auth(){
+
         _GoogleSignInClient = buildGoogleSignInClient();
         _Activity.startActivityForResult(_GoogleSignInClient.getSignInIntent(), MainActivity.REQUEST_CODE_SIGN_IN);
     }
