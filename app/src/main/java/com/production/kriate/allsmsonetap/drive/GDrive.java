@@ -20,17 +20,12 @@ public class GDrive {
 
     //region Constructor
 
-    private static GDrive _GDrive;
-    private Activity _Activity;
-
-    private GDrive(Activity activity) {
-        _Activity = activity;
-    }
-    public static GDrive Item(Activity activity){
-        if (_GDrive == null) {
-            _GDrive = new GDrive(activity);
+    private GDrive() {}
+    public static GDrive Item() {
+        if (App._GDrive == null) {
+            App._GDrive = new GDrive();
         }
-        return  _GDrive;
+        return App._GDrive;
     }
 
     //endregion
@@ -47,33 +42,46 @@ public class GDrive {
     //region Methods
 
     // Сохраняет файл базы данных на google drive
-    public int Send(){
+    public int Send() {
         try {
+            /*final Bitmap image = mBitmapToSave;
+            mDriveResourceClient
+                    .createContents()
+                    .continueWithTask(
+                            new Continuation<DriveContents, Task<Void>>() {
+                                @Override
+                                public Task<Void> then(@NonNull Task<DriveContents> task) throws Exception {
+                                    return createFileIntentSender(task.getResult(), image);
+                                }
+                            })
+                    .addOnFailureListener(
+                            new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Log.w(TAG, "Failed to create new contents.", e);
+                                }
+                            });*/
 
             return FILE_SENDED;
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             return FILE_NOT_SENDED;
         }
     }
 
     // Получает файл базы данных из google drive
-    public int load(){
+    public int load() {
         try {
 
             return FILE_LOADED;
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             return FILE_NOT_LADED;
         }
     }
 
     // Пользователь авторизуется
-    public void auth(){
+    public void auth(Activity activity) {
         _GoogleSignInClient = buildGoogleSignInClient();
-        _Activity.startActivityForResult(_GoogleSignInClient.getSignInIntent(), MainActivity.REQUEST_CODE_SIGN_IN);
+        activity.startActivityForResult(_GoogleSignInClient.getSignInIntent(), MainActivity.REQUEST_CODE_SIGN_IN);
     }
 
     //endregion
@@ -90,11 +98,10 @@ public class GDrive {
     }
 
     // Создается Drive clients после успешного соединения
-    public void createDriverClient()
-    {
-        _DriveClient = Drive.getDriveClient(_Activity, GoogleSignIn.getLastSignedInAccount(_Activity));
+    public void createDriverClient(Activity activity) {
+        _DriveClient = Drive.getDriveClient(activity, GoogleSignIn.getLastSignedInAccount(activity));
         _DriveResourceClient =
-                Drive.getDriveResourceClient(_Activity, GoogleSignIn.getLastSignedInAccount(_Activity));
+                Drive.getDriveResourceClient(activity, GoogleSignIn.getLastSignedInAccount(activity));
     }
 
 

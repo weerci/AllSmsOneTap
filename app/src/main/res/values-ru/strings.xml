@@ -72,4 +72,8 @@
     <string name="drawer_close">Скрыть навигационную панель</string>
     <string name="phone_prefix">тел. </string>
 
+
+    <!-- Preferences-->
+    <string name="preferences_saved">"All settings are saved"</string>
+
 </resources>
