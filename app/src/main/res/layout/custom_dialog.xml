@@ -27,7 +27,12 @@
         android:gravity="center_horizontal"
         tools:text="Это очень большой текст, который должен правильно отобразиться в диалоговом окне"
         android:padding="4dp"/>
-
+    <CheckBox
+        android:id="@+id/dialog_check_auth"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

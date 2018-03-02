@@ -1,5 +1,6 @@
 package com.production.kriate.allsmsonetap;
 
+import android.app.Activity;
 import android.app.Application;
 
 import com.production.kriate.allsmsonetap.drive.GDrive;

@@ -5,6 +5,7 @@ import android.content.SharedPreferences.Editor;
 import android.widget.Toast;
 
 import com.production.kriate.allsmsonetap.App;
+import com.production.kriate.allsmsonetap.R;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -33,8 +34,9 @@ public class AppSettings {
     public boolean isAuthOnStart() {
         return _AuthOnStart;
     }
-    public void setAuthOnStart(boolean authOnStart) {
+    public AppSettings setAuthOnStart(boolean authOnStart) {
         this._AuthOnStart = authOnStart;
+        return this;
     }
 
     //region Methods
@@ -43,20 +45,21 @@ public class AppSettings {
      * Сохраняет настройки приложения в файле настроек
      */
     public void Save(Activity activity){
-        SharedPreferences sPref = activity.getPreferences(MODE_PRIVATE);
+        SharedPreferences pref = activity.getPreferences(MODE_PRIVATE);
 
-        Editor ed = sPref.edit();
+        Editor ed = pref.edit();
         ed.putBoolean(AUTH_ON_START, _AuthOnStart);
         ed.commit();
 
-        Toast.makeText(activity, "Text saved", Toast.LENGTH_SHORT).show();
+        Toast.makeText(activity, R.string.preferences_saved, Toast.LENGTH_SHORT).show();
     }
 
     /**
      * Загружает настройки приложения из файла настроек
      */
-    public void Load() {
-
+    public void Load(Activity activity) {
+        SharedPreferences pref = activity.getPreferences(MODE_PRIVATE);
+        _AuthOnStart = pref.getBoolean(AUTH_ON_START, true);
     }
 
     //endregion

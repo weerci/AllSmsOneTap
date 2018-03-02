@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -30,9 +31,11 @@ import android.widget.Toast;
 
 import com.production.kriate.allsmsonetap.drive.GDrive;
 import com.production.kriate.allsmsonetap.fragments.AboutFragment;
+import com.production.kriate.allsmsonetap.fragments.DialogAuthOnStart;
 import com.production.kriate.allsmsonetap.fragments.ListCategoryFragment;
 import com.production.kriate.allsmsonetap.fragments.PageSmsFragment;
 import com.production.kriate.allsmsonetap.tools.AllSmsUtils;
+import com.production.kriate.allsmsonetap.tools.AppSettings;
 import com.production.kriate.allsmsonetap.tools.SmsBilling;
 
 import org.solovyev.android.checkout.ActivityCheckout;
@@ -50,8 +53,12 @@ public class MainActivity extends FragmentActivity {
     private CharSequence mDrawerTitle;
     private CharSequence mTitle;
     private String[] mScreenTitles;
+    private DialogFragment mAuthDialog;
 
     public static final int REQUEST_CODE_SIGN_IN = 0;
+    private final static String DIALOG_AUTH = "com.production.kriate.allsmsonetap.fragments.auth";
+    private final int REQUEST_AUTH = 1;
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -68,14 +75,17 @@ public class MainActivity extends FragmentActivity {
                 } else
                 Toast.makeText(getApplicationContext(), "Не удалось авторизоваться на Google Drive", Toast.LENGTH_LONG).show();
                 break;
+            default:
+                break;
         }
     }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
+        AppSettings.Item().Load(this);
+
+        setContentView(R.layout.activity_main);
         mTitle = mDrawerTitle = getTitle();
         mScreenTitles = getResources().getStringArray(R.array.screen_array);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -118,7 +128,11 @@ public class MainActivity extends FragmentActivity {
         SmsBilling.Item(this);
 
         // Авторизуемся для сохранения данных на google drive
-        GDrive.Item().auth(this);
+        if (AppSettings.Item().isAuthOnStart())
+        {
+            mAuthDialog = new DialogAuthOnStart();
+            mAuthDialog.show(getSupportFragmentManager(), DIALOG_AUTH);
+        }
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -212,5 +226,12 @@ public class MainActivity extends FragmentActivity {
             mDrawerLayout.closeDrawer(mRelativeLayout);
         }
 
+
+    }
+
+    public void getAuthResult(boolean result)
+    {
+        if (result)
+            GDrive.Item().auth(this);
     }
 }

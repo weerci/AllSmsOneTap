@@ -37,6 +37,7 @@ public class PageSmsFragment extends Fragment {
     private static final int SMS_UPDATE = 0;
     private static final int SMS_INSERT = 1;
     private final int REQUEST_SEND_SMS = 3;
+
     private final static String DIALOG_SEND_SMS = "com.production.kriate.allsmsonetap.fragments.send_sms";
     private final static String CURRENT_PAGE_ID = "com.production.kriate.allsmsonetap.fragments.current_page_id";
     private ViewPager mViewPager;

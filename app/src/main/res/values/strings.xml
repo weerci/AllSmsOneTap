@@ -71,6 +71,9 @@
     <string name="phone_prefix">tel. </string>
 
     <!-- Preferences-->
-    <string name="preferences_saved">"All settings are saved"</string>
+    <string name="preferences_saved">All settings are saved</string>
+    <string name="preferences_sync_title">Sync with Google Drive</string>
+    <string name="preferences_sync_question">Do you want to sync your templates with Google Drive?</string>
+    <string name="preferences_confirm_hide">Do not ask any more about authorization</string>
 
 </resources>
