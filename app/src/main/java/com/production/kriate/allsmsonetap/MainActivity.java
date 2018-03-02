@@ -62,10 +62,13 @@ public class MainActivity extends FragmentActivity {
                 SmsBilling.Item(this).getCheckout().onActivityResult(requestCode, resultCode, data);
                 break;
             case REQUEST_CODE_SIGN_IN:
-                Toast.makeText(getApplicationContext(), "REQUEST_CODE_SIGN_IN result code =" + resultCode,Toast.LENGTH_LONG);
+                if (resultCode == RESULT_OK) {
+                    GDrive.Item(this).createDriverClient();
+                    Toast.makeText(getApplicationContext(), "Удалось авторизоваться на Google Drive", Toast.LENGTH_LONG).show();
+                } else
+                Toast.makeText(getApplicationContext(), "Не удалось авторизоваться на Google Drive", Toast.LENGTH_LONG).show();
                 break;
         }
-
     }
 
     @Override
@@ -115,7 +118,7 @@ public class MainActivity extends FragmentActivity {
         SmsBilling.Item(this);
 
         // Авторизуемся для сохранения данных на google drive
-        GDrive.Item(this).Auth();
+        GDrive.Item(this).auth();
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -210,6 +213,4 @@ public class MainActivity extends FragmentActivity {
         }
 
     }
-
-
 }
