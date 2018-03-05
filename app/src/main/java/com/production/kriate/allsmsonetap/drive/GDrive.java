@@ -1,114 +1,82 @@
 package com.production.kriate.allsmsonetap.drive;
 
 import android.app.Activity;
-import android.content.Context;
+import android.content.Intent;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.drive.Drive;
 import com.google.android.gms.drive.DriveClient;
 import com.google.android.gms.drive.DriveResourceClient;
-import com.production.kriate.allsmsonetap.App;
-import com.production.kriate.allsmsonetap.MainActivity;
-
 
 /**
- * Created by dima on 22.02.2018.
+ * Created by dima on 05.03.2018.
  */
-public class GDrive {
 
-    //region Constructor
+public class GDrive extends Activity implements IGDrive {
+    private static final int REQUEST_CODE_SIGN_IN = 0;
 
-    private GDrive() {}
-    public static GDrive Item() {
-        if (App._GDrive == null) {
-            App._GDrive = new GDrive();
-        }
-        return App._GDrive;
-    }
+    private GoogleSignInClient _Client = getGoogleSignInClient();
+    private GoogleSignInAccount _Account = GoogleSignIn.getLastSignedInAccount(this);
+    private DriveClient _Drive;
+    private DriveResourceClient _Resource;
 
-    //endregion
-
-    //region Properties
-
-    public boolean _IsAuih = false;
-    private GoogleSignInClient _GoogleSignInClient;
-    private DriveClient _DriveClient;
-    private DriveResourceClient _DriveResourceClient;
-
-    //endregion
-
-    //region Methods
-
-    // Сохраняет файл базы данных на google drive
-    public int Send() {
+    @Override
+    public boolean auth() {
         try {
-            /*final Bitmap image = mBitmapToSave;
-            mDriveResourceClient
-                    .createContents()
-                    .continueWithTask(
-                            new Continuation<DriveContents, Task<Void>>() {
-                                @Override
-                                public Task<Void> then(@NonNull Task<DriveContents> task) throws Exception {
-                                    return createFileIntentSender(task.getResult(), image);
-                                }
-                            })
-                    .addOnFailureListener(
-                            new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Log.w(TAG, "Failed to create new contents.", e);
-                                }
-                            });*/
-
-            return FILE_SENDED;
+            if (_Account != null)
+                buildDrive();
+            else
+                startActivityForResult(_Client.getSignInIntent(), REQUEST_CODE_SIGN_IN);
+            return true;
         } catch (Exception e) {
-            return FILE_NOT_SENDED;
+            return false;
         }
     }
 
-    // Получает файл базы данных из google drive
-    public int load() {
-        try {
-
-            return FILE_LOADED;
-        } catch (Exception e) {
-            return FILE_NOT_LADED;
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE_SIGN_IN) {
+            if (resultCode == RESULT_OK) {
+                buildDrive();
+            }
         }
     }
 
-    // Пользователь авторизуется
-    public void auth(Activity activity) {
-        _GoogleSignInClient = buildGoogleSignInClient();
-        activity.startActivityForResult(_GoogleSignInClient.getSignInIntent(), MainActivity.REQUEST_CODE_SIGN_IN);
+    @Override
+    public boolean save() {
+        return false;
     }
 
-    //endregion
+    @Override
+    public boolean load() {
+        return false;
+    }
+
+    @Override
+    public boolean reSing() {
+        _Client.signOut();
+        return auth();
+    }
 
     //region Helper
 
-    // Создается Google sign-in client.
-    private GoogleSignInClient buildGoogleSignInClient() {
+    private GoogleSignInClient getGoogleSignInClient() {
         GoogleSignInOptions signInOptions =
                 new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                         .requestScopes(Drive.SCOPE_FILE)
                         .build();
-        return GoogleSignIn.getClient(App.getContext(), signInOptions);
+        return GoogleSignIn.getClient(this, signInOptions);
     }
 
-    // Создается Drive clients после успешного соединения
-    public void createDriverClient(Activity activity) {
-        _DriveClient = Drive.getDriveClient(activity, GoogleSignIn.getLastSignedInAccount(activity));
-        _DriveResourceClient =
-                Drive.getDriveResourceClient(activity, GoogleSignIn.getLastSignedInAccount(activity));
+    private void buildDrive() {
+        _Drive = Drive.getDriveClient(this, _Account);
+        _Resource = Drive.getDriveResourceClient(this, _Account);
     }
-
 
     //endregion
 
-    public final int FILE_NOT_SENDED = 0;
-    public final int FILE_SENDED = 1;
-    public final int FILE_NOT_LADED = 2;
-    public final int FILE_LOADED = 3;
 }

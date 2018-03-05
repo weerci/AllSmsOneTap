@@ -29,6 +29,9 @@
             android:name=".EditSmsActivity"
             android:label="@string/header_template_editor" >
         </activity>
+        <activity
+            android:name=".GDrive"
+        </activity>
     </application>
 
 </manifest>

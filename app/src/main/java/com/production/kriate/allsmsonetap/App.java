@@ -1,6 +1,5 @@
 package com.production.kriate.allsmsonetap;
 
-import android.app.Activity;
 import android.app.Application;
 
 import com.production.kriate.allsmsonetap.drive.GDrive;
@@ -19,10 +18,6 @@ public class App extends Application {
     }
 
     private static App instance;
-    /**
-     * Статическая переменная для синглетона класса авторизации
-     */
-    public static GDrive _GDrive;
 
     /**
      * Статическая переменная для синглетона класса настроек

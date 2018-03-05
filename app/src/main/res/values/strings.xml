@@ -76,4 +76,8 @@
     <string name="preferences_sync_question">Do you want to sync your templates with Google Drive?</string>
     <string name="preferences_confirm_hide">Do not ask any more about authorization</string>
 
+    <!-- Auth-->
+    <string name="auth_account_authorized">You account is authorized on google drive</string>
+    <string name="auth_not_authorized">Unable connect to Google drive</string>
+
 </resources>

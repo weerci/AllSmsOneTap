@@ -7,9 +7,6 @@ import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.production.kriate.allsmsonetap.App;
-import com.production.kriate.allsmsonetap.drive.GDrive;
-
 import java.util.ArrayList;
 
 /**

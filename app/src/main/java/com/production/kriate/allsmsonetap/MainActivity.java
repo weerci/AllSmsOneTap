@@ -1,9 +1,6 @@
 package com.production.kriate.allsmsonetap;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.content.res.Configuration;
@@ -14,16 +11,12 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -34,13 +27,8 @@ import com.production.kriate.allsmsonetap.fragments.AboutFragment;
 import com.production.kriate.allsmsonetap.fragments.DialogAuthOnStart;
 import com.production.kriate.allsmsonetap.fragments.ListCategoryFragment;
 import com.production.kriate.allsmsonetap.fragments.PageSmsFragment;
-import com.production.kriate.allsmsonetap.tools.AllSmsUtils;
 import com.production.kriate.allsmsonetap.tools.AppSettings;
 import com.production.kriate.allsmsonetap.tools.SmsBilling;
-
-import org.solovyev.android.checkout.ActivityCheckout;
-
-import java.util.Locale;
 
 
 public class MainActivity extends FragmentActivity {
@@ -54,26 +42,19 @@ public class MainActivity extends FragmentActivity {
     private CharSequence mTitle;
     private String[] mScreenTitles;
     private DialogFragment mAuthDialog;
+    private GDrive _GDrive;
 
     public static final int REQUEST_CODE_SIGN_IN = 0;
     private final static String DIALOG_AUTH = "com.production.kriate.allsmsonetap.fragments.auth";
-    private final int REQUEST_AUTH = 1;
 
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         switch (requestCode){
             case 0XCAFE:
                 SmsBilling.Item(this).getCheckout().onActivityResult(requestCode, resultCode, data);
-                break;
-            case REQUEST_CODE_SIGN_IN:
-                if (resultCode == RESULT_OK) {
-                    GDrive.Item().createDriverClient(this);
-                    Toast.makeText(getApplicationContext(), "Удалось авторизоваться на Google Drive", Toast.LENGTH_LONG).show();
-                } else
-                Toast.makeText(getApplicationContext(), "Не удалось авторизоваться на Google Drive", Toast.LENGTH_LONG).show();
                 break;
             default:
                 break;
@@ -128,6 +109,8 @@ public class MainActivity extends FragmentActivity {
         SmsBilling.Item(this);
 
         // Авторизуемся для сохранения данных на google drive
+        _GDrive = new GDrive();
+
         if (AppSettings.Item().isAuthOnStart())
         {
             mAuthDialog = new DialogAuthOnStart();
@@ -232,6 +215,6 @@ public class MainActivity extends FragmentActivity {
     public void getAuthResult(boolean result)
     {
         if (result)
-            GDrive.Item().auth(this);
+            _GDrive.auth();
     }
 }

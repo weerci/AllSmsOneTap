@@ -79,4 +79,7 @@
     <string name="preferences_sync_question">Вы хотите синхронизировать свои шаблоны сохраняя их на Google Drive?</string>
     <string name="preferences_confirm_hide">Не предлагать авторизацию</string>
 
+    <!-- Auth-->
+    <string name="auth_account_authorized">Ваш аккаунт авторизован на Google drive</string>
+    <string name="auth_not_authorized">Не удалось подключиться к Google drive</string>
 </resources>
